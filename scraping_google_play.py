@@ -6,16 +6,8 @@ import time  # Untuk memberi jeda jika diperlukan
 from tqdm import tqdm
 
 # --- Konfigurasi Scraping ---
-# Ganti dengan ID aplikasi target di Google Play Store
-# Contoh: Tokopedia: com.tokopedia.tkpd
-#         Shopee: com.shopee.id
-#         Gojek: com.gojek.app
 APP_ID = 'com.tokopedia.tkpd'  # <<< GANTI INI SESUAI TARGET ANDA
-
-# Jumlah ulasan yang ingin diambil (targetkan > 10.000 untuk bintang 5)
-JUMLAH_ULASAN_TARGET = 50000  # <<< SESUAIKAN TARGET ANDA
-
-# Nama file output
+JUMLAH_ULASAN_TARGET = 75000  # <<< SESUAIKAN TARGET ANDA
 NAMA_FILE_OUTPUT = f'hasil_scraping_{APP_ID}.csv'
 
 print(f"Memulai scraping ulasan untuk aplikasi: {APP_ID}")
@@ -30,15 +22,27 @@ try:
     # Membuat progress bar dengan total target ulasan
     with tqdm(total=JUMLAH_ULASAN_TARGET, desc="Scraping ulasan") as pbar:
         while True:
-            # Ambil batch ulasan
-            result, token = reviews(
-                APP_ID,
-                lang='id',           # Bahasa ulasan (Indonesia)
-                country='id',        # Negara (Indonesia)
-                sort=Sort.NEWEST,    # Urutkan berdasarkan terbaru
-                count=batch_size,
-                continuation_token=token
-            )
+            # Tambahkan kode retry: hingga 5 kali jika terjadi exception
+            for attempt in range(5):
+                try:
+                    result, token = reviews(
+                        APP_ID,
+                        lang='id',           # Bahasa ulasan (Indonesia)
+                        country='id',        # Negara (Indonesia)
+                        sort=Sort.NEWEST,    # Urutkan berdasarkan terbaru
+                        count=batch_size,
+                        continuation_token=token
+                    )
+                    break  # Jika berhasil, keluar dari loop retry
+                except Exception as e:
+                    print(f"\nGagal mengambil ulasan (attempt {attempt+1}/5): {e}")
+                    if attempt < 4:
+                        print("Mencoba kembali...")
+                        time.sleep(2)  # jeda selama 2 detik sebelum retry
+                    else:
+                        raise Exception("Gagal terhubung setelah 5 kali percobaan") from e
+
+            # Tambahkan ulasan yang didapat ke list
             semua_ulasan.extend(result)
             pbar.update(len(result))
             
@@ -58,13 +62,10 @@ try:
 
     # Konversi ke DataFrame Pandas
     df_ulasan = pd.DataFrame(semua_ulasan)
-
-    # Pilih kolom yang relevan saja (misalnya: userName, score, at, content)
+    # Pilih kolom yang relevan (misalnya: userName, score, at, content)
     df_final = df_ulasan[['userName', 'score', 'at', 'content']]
-
     # Simpan ke file CSV
-    df_final.to_csv(NAMA_FILE_OUTPUT, index=False, encoding='utf-8-sig')  # utf-8-sig agar kompatibel Excel
-
+    df_final.to_csv(NAMA_FILE_OUTPUT, index=False, encoding='utf-8-sig')
     print(f"Data berhasil disimpan ke file: {NAMA_FILE_OUTPUT}")
 
 except Exception as e:
