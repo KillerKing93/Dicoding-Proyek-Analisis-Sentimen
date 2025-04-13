@@ -50,11 +50,11 @@ Proyek ini dibuat sebagai bagian dari submission untuk kelas Belajar Pengembanga
 2.  **Buat Virtual Environment (Sangat Direkomendasikan):**
 
     ```bash
-    python -m venv venv
+    python -m venv myvenv
     ```
 
-    - **Windows:** `venv\Scripts\activate`
-    - **macOS/Linux:** `source venv/bin/activate`
+    - **Windows:** `myvenv\Scripts\activate`
+    - **macOS/Linux:** `source myvenv/bin/activate`
 
 3.  **Instal Dependensi:**
 
