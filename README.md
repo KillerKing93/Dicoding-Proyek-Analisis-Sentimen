@@ -43,8 +43,8 @@ Proyek ini dibuat sebagai bagian dari submission untuk kelas Belajar Pengembanga
 1.  **Clone Repository (Jika Ada):**
 
     ```bash
-    git clone [https://www.andarepository.com/](https://www.andarepository.com/)
-    cd [Nama Direktori Repository]
+    git clone https://github.com/KillerKing93/Dicoding-Proyek-Analisis-Sentimen
+    cd Dicoding-Proyek-Analisis-Sentimen
     ```
 
 2.  **Buat Virtual Environment (Sangat Direkomendasikan):**
