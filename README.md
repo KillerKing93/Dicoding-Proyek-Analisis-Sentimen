@@ -29,6 +29,7 @@ Proyek ini dibuat sebagai bagian dari submission untuk kelas Belajar Pengembanga
 ├── sentiment_analysis_notebook.ipynb # Notebook utama untuk analisis dan pelatihan
 ├── requirements.txt                # Daftar library Python yang dibutuhkan
 ├── hasil_scraping_[APP_ID].csv     # Contoh output data scraping (nama file akan bervariasi)
+├── hasil_scraping_semua_app.csv    # Kombinasi semua data scraping
 └── README.md                       # File ini
 ```
 
