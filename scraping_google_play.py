@@ -59,22 +59,3 @@ try:
 except Exception as e:
     print(f"Terjadi kesalahan saat scraping: {e}")
     print("Pastikan ID Aplikasi benar dan koneksi internet stabil.")
-    
-# Cari semua file CSV yang namanya diawali dengan 'hasil_scraping_' dan diakhiri '.csv'
-file_list = glob.glob("hasil_scraping_*.csv")
-
-# Inisialisasi list untuk menampung setiap DataFrame
-dataframes = []
-
-# Baca setiap file CSV dan tambahkan ke list
-for file in file_list:
-    df = pd.read_csv(file)
-    dataframes.append(df)
-
-# Gabungkan semua DataFrame menjadi satu
-df_semua = pd.concat(dataframes, ignore_index=True)
-
-# Simpan DataFrame gabungan ke file CSV baru
-df_semua.to_csv("hasil_scraping_semua_app.csv", index=False, encoding='utf-8-sig')
-
-print("Semua file CSV berhasil digabung menjadi 'hasil_scraping_semua_app.csv'")
