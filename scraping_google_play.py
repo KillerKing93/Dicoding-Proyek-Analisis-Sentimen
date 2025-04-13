@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 # --- Konfigurasi Scraping ---
 APP_ID = 'com.tokopedia.tkpd'  # <<< GANTI INI SESUAI TARGET ANDA
-JUMLAH_ULASAN_TARGET = 75000  # <<< SESUAIKAN TARGET ANDA
+JUMLAH_ULASAN_TARGET = 150000  # <<< SESUAIKAN TARGET ANDA
 NAMA_FILE_OUTPUT = f'hasil_scraping_{APP_ID}.csv'
 
 print(f"Memulai scraping ulasan untuk aplikasi: {APP_ID}")
