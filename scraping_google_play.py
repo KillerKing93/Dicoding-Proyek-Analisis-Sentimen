@@ -13,7 +13,7 @@ from tqdm import tqdm
 APP_ID = 'com.tokopedia.tkpd'  # <<< GANTI INI SESUAI TARGET ANDA
 
 # Jumlah ulasan yang ingin diambil (targetkan > 10.000 untuk bintang 5)
-JUMLAH_ULASAN_TARGET = 15000  # <<< SESUAIKAN TARGET ANDA
+JUMLAH_ULASAN_TARGET = 50000  # <<< SESUAIKAN TARGET ANDA
 
 # Nama file output
 NAMA_FILE_OUTPUT = f'hasil_scraping_{APP_ID}.csv'
