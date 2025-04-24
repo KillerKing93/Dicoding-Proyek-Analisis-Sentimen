@@ -11,7 +11,7 @@ Proyek ini dibuat sebagai bagian dari submission untuk kelas Belajar Pengembanga
 ## Fitur Utama
 
 - **Scraping Data:** Mengambil ulasan aplikasi dari Google Play Store menggunakan library `google-play-scraper`.
-- **Preprocessing Teks:** Membersihkan data teks ulasan (lowercase, hapus URL, tanda baca, angka, dll.) dan menghapus stopwords Bahasa Indonesia menggunakan `nltk`.
+- **Preprocessing Teks:** Membersihkan data teks ulasan (lowercase, hapus URL, tanda baca, angka, dll.) dan menghapus stopwords Bahasa Indonesia menggunakan `nltk` dan stemming menggunakan sastrawi.
 - **Pelabelan Sentimen:** Mengklasifikasikan ulasan ke dalam 3 kategori (Positif, Negatif, Netral) berdasarkan rating bintang.
 - **Ekstraksi Fitur:** Menggunakan TF-IDF (`scikit-learn`) untuk model ML klasik dan Sequence Padding (`tensorflow.keras.preprocessing`) untuk model Deep Learning.
 - **Pelatihan Model:** Melatih dan membandingkan 3 skema model:
@@ -29,6 +29,7 @@ Proyek ini dibuat sebagai bagian dari submission untuk kelas Belajar Pengembanga
 ├── sentiment_analysis_notebook.ipynb # Notebook utama untuk analisis dan pelatihan
 ├── requirements.txt                # Daftar library Python yang dibutuhkan
 ├── hasil_scraping_[APP_ID].csv     # Contoh output data scraping (nama file akan bervariasi)
+├── hasil_scraping_semua_app.csv     # Output semua data scraping dari semua app
 └── README.md                       # File ini
 ```
 
